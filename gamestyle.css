@@ -1,0 +1,59 @@
+
+.title{
+  width: 70%;
+  height: 50px;
+  margin: auto;
+  border: dotted;
+  text-align: center;
+  padding: 10px;
+  height: auto;
+  min-width: 455px;
+  margin-block-start: 20px;
+}
+
+.game {
+  width: 70%;
+  margin: auto;
+  border: dotted;
+  padding: 10px;
+  text-align: center;
+  height: 70%;
+  min-width: 455px;
+}
+
+.column {
+  width: 44%;
+  height: 85%;
+  float: left;
+  margin-left: 4%;
+  min-width: 200px;
+  box-sizing: border-box;
+}
+
+div {
+  border: none;
+  box-sizing: border-box;
+}
+
+body {
+  border: solid;
+  height: 700px;
+  min-width: 250px;
+}
+
+h1.game-title {
+  color: DodgerBlue;
+  font-size: 50px;
+  margin-block-start: 0.07em;
+  margin-block-end: 0.07em;
+}
+
+.play-window h2 {
+  margin-block-start: 0.5em;
+  margin-block-end: 0.5em;
+}
+
+button {
+  width: 40%;
+  margin: 5px;
+}
