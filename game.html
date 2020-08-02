@@ -35,31 +35,10 @@
         <h2>Letters Already Guessed</h2>
         <h2 class="been-guessed">.</h2>
       </div>
-      <button class="submit hard" id="submit">Button baybeeee</button>
-      <button class="render">Render</button>
+      <button class="submit" id="submit">Button for submitting?</button> 
+      <!-- don't need render button -->
   </div>
 </body>
 
-<!--get rid of this script it isn't even related-->
-<script>
-let counter = 0;
-  $(".increment").click(function(event) {
-    counter++;
-    console.log(counter);
-    $(".countervalue").text(counter);
-  });
-  $(".reset").click(function() {
-    counter = 0;
-    console.log(counter);
-    $(".countervalue").text(counter);
-  })
-
-  $("button").on("click", function() {
-
-  let now = new Date();
-  console.log(Date.now())
-  console.log(now.toString());
-  });
-</script>
 
 </html>
