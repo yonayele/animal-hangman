@@ -57,3 +57,13 @@ button {
   width: 40%;
   margin: 5px;
 }
+
+.game-score  {
+  column-count: 2;
+
+}
+
+.Wins, .Timer {
+
+  padding-top: 1px;
+}
