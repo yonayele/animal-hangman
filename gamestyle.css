@@ -37,8 +37,20 @@ div {
 
 body {
   border: solid;
-  height: 700px;
+  height: 750px;
   min-width: 250px;
+}
+
+h1 { 
+  font-family: 'Open Sans Condensed', sans-serif; font-size: 30px; color: #333;
+}
+
+h2 {
+  font-family: 'Open Sans Condensed', sans-serif; font-size: 24px; color: #333;
+}
+
+p { 
+  color: #333; font-family: 'Muli', sans-serif; margin-bottom: 15px; 
 }
 
 h1.game-title {
@@ -54,16 +66,43 @@ h1.game-title {
 }
 
 button {
-  width: 40%;
-  margin: 5px;
+  background-color: DodgerBlue;
+  border: none;
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  font-weight: bold;
+  padding: 15px 15px;
+  border-radius: 8px;
+}
+
+button:hover {
+  background-color: White;
+  color: DodgerBlue;
+  border: 2px solid #1e90ff ;
 }
 
 .game-score  {
-  column-count: 2;
-
+  column-count: 3;
 }
 
-.Wins, .Timer {
-
+.Wins, .Losses, .Timer {
   padding-top: 1px;
+}
+
+.Wins h2 {
+  color: #00d70b;
+}
+
+.Losses h2 {
+  color: #ff6961;
+}
+
+.Timer h2 {
+  color: #6961ff;
+}
+
+h2.guess-count {
+  color: #6961ff;
+  display:inline-block;
 }
