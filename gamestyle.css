@@ -17,13 +17,13 @@
   border: dotted;
   padding: 10px;
   text-align: center;
-  height: 70%;
+  height: 80%;
   min-width: 455px;
 }
 
 .column {
   width: 44%;
-  height: 85%;
+  height: 90%;
   float: left;
   margin-left: 4%;
   min-width: 200px;
@@ -105,4 +105,8 @@ button:hover {
 h2.guess-count {
   color: #6961ff;
   display:inline-block;
+}
+
+.guess-word {
+  color : dodgerblue;
 }
