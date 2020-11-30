@@ -2,6 +2,7 @@
 const page = document;
 
 var animalArray = ['eagle', 'cow', 'kangaroo']
+var guessArray = [];
 
 $(function() {
   // console.log('random animal');
@@ -24,7 +25,9 @@ $(function() {
     console.log(animal)
     console.log(typeof letter);
     var keycode = key.originalEvent.keyCode;
-    if ((keycode > 64 && keycode < 91) || (keycode > 96 && keycode < 123)) {
+    if (((keycode > 64 && keycode < 91) || (keycode > 96 && keycode < 123))
+      && !(guessArray.includes(letter))) {
+      guessArray.push(letter);
       var occur = 0;
       var i;
       var numGuesses = parseInt($('.guess-num').text());
