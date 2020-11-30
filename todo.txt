@@ -1,0 +1,14 @@
+Animal Hangman TODO
+reset button - Nacho
+don't double count same letter (map?) - Yonatan
+timer
+promise on decrement count, alert after show 0 guesses
+wins and losses
+picture
+pull list of animals from internet
+
+bugs
+if final guess is correct, still says you lose
+
+git stuff
+can you push changes from tracked branch?
