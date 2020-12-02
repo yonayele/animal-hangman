@@ -14,7 +14,7 @@ $(function() {
   for (j = 0; j < animal.length; j++) {
     underscores += '_ '
   }
-  $(".guess-word").text(underscores)
+  $(".guess-word").text(underscores) //changes text of elements of class "guess-word"
 
   $(this).keypress(function(key) {
     // console.log('keypress - letter');
