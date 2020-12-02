@@ -1,9 +1,10 @@
 Animal Hangman TODO
 reset button - Nacho
-don't double count same letter (map?) - Yonatan
 timer
-promise on decrement count, alert after show 0 guesses
+promise on decrement count, alert after show 0 guesses - Yonatan
 wins and losses
+if num guesses < unique chars left, they auto lose
+if you lose, show what the word was before next hangman
 picture
 pull list of animals from internet
 
