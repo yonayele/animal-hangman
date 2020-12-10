@@ -48,6 +48,27 @@ $(function() {
     // console.log('keypress - occurences of letter in animal name');
     // console.log(occur);
   });
+
+  //Reset Button
+  //Resets letters guessed, current word, # of guesses, wins,
+  //losses, and timer
+  //Does NOT change to different word
+  $(document).ready(function() {
+    $("#reset").click(function(){
+        alert("Reset Done!"); //Can remove this after testing
+        $('.win-counter').text(1);
+        $('.loss-counter').text(1);
+        $('.timer-counter').text(1);
+        setNumGuesses(animal.length + 2);
+        underscores = '';
+        for (i = 0; i < animal.length; i++) {
+          underscores += '_ '
+        }
+        $('.guess-word').text(underscores);
+        //Need to see yawnys code to change 'letters already guessed'
+    }); 
+  });
+
 });
 
 function setCharAt(str,index,chr) {
