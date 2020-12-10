@@ -49,6 +49,7 @@ $(function() {
       $('.timer-counter').text(1);
       setNumGuesses(animal.length + 2);
       underscores = '';
+      //Make this a function (down below)
       for (i = 0; i < animal.length; i++) {
         underscores += '_ '
       }
