@@ -2,8 +2,9 @@ Animal Hangman TODO
 reset button - Nacho
 timer
 promise on decrement count, alert after show 0 guesses - Yonatan
+bootstrap toast messages instead of alerts
 wins and losses
-if num guesses < unique chars left, they auto lose
+if num guesses < unique chars left, they auto lose - Nacho
 if you lose, show what the word was before next hangman
 picture
 pull list of animals from internet
