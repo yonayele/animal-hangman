@@ -60,11 +60,6 @@ $(function() {
     }
     $('.guess-word').text(underscores);
   });
-
-  $('.toast-btn').click(function() {
-    $('.toast').toast({delay: 5000});
-    $('.toast').toast('show')
-  })
 });
 
 function setCharAt(str,index,chr) {
