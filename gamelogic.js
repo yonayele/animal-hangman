@@ -43,19 +43,28 @@ $(function() {
   //Does NOT change to different word
   
   $("#reset").click(function(){
-      alert("Reset Done!"); //Can remove this after testing
-      $('.win-counter').text(1);
-      $('.loss-counter').text(1);
-      $('.timer-counter').text(1);
-      setNumGuesses(animal.length + 2);
-      underscores = '';
-      //Make this a function (down below)
-      for (i = 0; i < animal.length; i++) {
-        underscores += '_ '
-      }
-      $('.guess-word').text(underscores);
       //Need to see yawnys code to change 'letters already guessed'
+      $('#updateModal').modal('show');  //shows modal to confirm rest
   }); 
+
+  $('.confirm-reset').click(function() { //if you confirm to rest the game
+    // alert("Reset Done!"); //Can remove this after testing
+    $('.win-counter').text(1);
+    $('.loss-counter').text(1);
+    $('.timer-counter').text(1);
+    setNumGuesses(animal.length + 2);
+    underscores = '';
+    //Make this a function (down below)
+    for (i = 0; i < animal.length; i++) {
+      underscores += '_ '
+    }
+    $('.guess-word').text(underscores);
+  });
+
+  $('.toast-btn').click(function() {
+    $('.toast').toast({delay: 5000});
+    $('.toast').toast('show')
+  })
 });
 
 function setCharAt(str,index,chr) {
@@ -79,8 +88,8 @@ function decrementNumGuesses(numGuesses) {
 }
 
 function loseMessage() {
-  alert('reepa reepa');
-  alert('LAOSKI')
+  $('.toast').toast({delay: 5000});
+  $('.toast-lose').toast('show')
 }
 
 function setNumGuesses(num) {

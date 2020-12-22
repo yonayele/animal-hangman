@@ -7,7 +7,7 @@
   text-align: center;
   padding: 10px;
   height: auto;
-  min-width: 455px;
+  min-width: 940px;
   margin-block-start: 20px;
 }
 
@@ -18,7 +18,11 @@
   padding: 10px;
   text-align: center;
   height: 80%;
-  min-width: 455px;
+  min-width: 940px;
+}
+
+.window {
+  background-color: seashell;
 }
 
 .column {
@@ -30,15 +34,18 @@
   box-sizing: border-box;
 }
 
+.the-game {
+  background-color: white;
+}
+
 div {
   border: none;
   box-sizing: border-box;
 }
 
 body {
-  border: solid;
-  height: 750px;
-  min-width: 250px;
+  /* border: solid; */
+  height: 850px;
 }
 
 h1 { 
@@ -109,4 +116,25 @@ h2.guess-count {
 
 .guess-word {
   color : dodgerblue;
+}
+
+.align-helper {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.toast {
+  top: 35%;
+  left: 50%;
+  position: fixed;
+  width: 300px;
+  height: 150px;
+  transform: translate(-50%, 0px);
+  z-index: 999;
+  vertical-align: middle;
+}
+
+.toast-header {
+  background-color: blue;
 }
