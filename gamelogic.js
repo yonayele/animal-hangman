@@ -3,10 +3,11 @@ const page = document;
 
 var animalArray = ['eagle', 'cow', 'kangaroo']
 var guessArray = [];
+var animal;
 
 $(function() {
   var randIndex = Math.random() * animalArray.length;
-  var animal = animalArray[Math.floor(randIndex)]
+  animal = animalArray[Math.floor(randIndex)]
   setNumGuesses(animal.length + 2);
   var j;
   var underscores = '';
@@ -46,14 +47,18 @@ $(function() {
       //Need to see yawnys code to change 'letters already guessed'
       $('#updateModal').modal('show');  //shows modal to confirm rest
   }); 
-
   $('.confirm-reset').click(function() { //if you confirm to rest the game
     // alert("Reset Done!"); //Can remove this after testing
-    $('.win-counter').text(1);
-    $('.loss-counter').text(1);
-    $('.timer-counter').text(1);
+    $('.win-counter').text(0);
+    $('.loss-counter').text(0);
+    $('.timer-counter').text('4:00');
+    guessArray = []
+    $('.been-guessed').text(' ');
+    var randIndex = Math.random() * animalArray.length;
+    animal = animalArray[Math.floor(randIndex)]
     setNumGuesses(animal.length + 2);
     underscores = '';
+    var i;
     //Make this a function (down below)
     for (i = 0; i < animal.length; i++) {
       underscores += '_ '
