@@ -49,8 +49,6 @@ $(function() {
   }); 
   $('.confirm-reset').click(function() { //if you confirm to rest the game
     // alert("Reset Done!"); //Can remove this after testing
-    $('.win-counter').text(0);
-    $('.loss-counter').text(0);
     $('.timer-counter').text('4:00');
     guessArray = []
     $('.been-guessed').text(' ');
