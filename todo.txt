@@ -1,7 +1,7 @@
 Animal Hangman TODO
 timer - Yonatan
 comment code - Yonatan
-stop from playing - Yonatan
+stop from playing if lose - Yonatan
 wins and losses - Nacho
 update reset button - Yonatan
 if num guesses < unique chars left, they auto lose - Nacho
