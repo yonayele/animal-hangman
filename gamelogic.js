@@ -4,8 +4,11 @@ const page = document;
 var animalArray = ['eagle', 'cow', 'kangaroo']
 var guessArray = [];
 var animal;
+var gameTimer;
+var totalGameTime = 60;
 
 $(function() {
+  timer(totalGameTime)
   var randIndex = Math.random() * animalArray.length;
   animal = animalArray[Math.floor(randIndex)]
   setNumGuesses(animal.length + 2);
@@ -51,7 +54,7 @@ $(function() {
     // alert("Reset Done!"); //Can remove this after testing
     $('.win-counter').text(0);
     $('.loss-counter').text(0);
-    $('.timer-counter').text('4:00');
+    $('.timer-counter').text('1:00');
     guessArray = []
     $('.been-guessed').text(' ');
     var randIndex = Math.random() * animalArray.length;
@@ -64,6 +67,7 @@ $(function() {
       underscores += '_ '
     }
     $('.guess-word').text(underscores);
+    resetTimer();
   });
 });
 
@@ -82,16 +86,51 @@ function decrementNumGuesses(numGuesses) {
   if (numGuesses >= 0) {
     $('.guess-num').text(numGuesses);
     if (numGuesses === 0) {
-      loseMessage();
+      loseGuesses();
     }
   }
 }
 
-function loseMessage() {
+function loseGuesses() {
   $('.toast').toast({delay: 5000});
-  $('.toast-lose').toast('show')
+  $('.toast-no-guesses').toast('show');
+  $('.toast-lose').toast('show');
+  //TODO
+  //Change toast-lose to toast-no-guesses
+}
+
+function loseTime() {
+  $('.toast').toast({delay: 5000});
+  $('.toast-no-time').toast('show');
 }
 
 function setNumGuesses(num) {
   $('.guess-num').text(num);
+}
+
+function timer(time) {
+  var time = time - 1;
+  var min = (time + 1) / 60;
+  gameTimer = setInterval(function() {
+    var sec = time % 60;
+    if (sec === 59) {
+      min--
+    }
+    if (sec.toString().length == 1) {
+      sec = '0' + sec;
+    }
+
+    $('.timer-counter').text(min + ':' + sec);
+    time--;
+    if (time < 0) {
+      $('.timer-counter').text('0:00');
+      loseTime();
+      clearInterval(gameTimer)
+    }
+  }, 1000)
+}
+
+function resetTimer() {
+  clearInterval(gameTimer)
+  timer(totalGameTime)
 }
