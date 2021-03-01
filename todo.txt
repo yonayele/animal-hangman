@@ -3,7 +3,6 @@ timer - Yonatan
 comment code - Yonatan
 stop from playing if lose - Yonatan
 wins and losses - Nacho
-update reset button - Yonatan
 if num guesses < unique chars left, they auto lose - Nacho
 if you lose, show what the word was before next hangman - Yonatan
 picture 
