@@ -5,7 +5,8 @@ var animalArray = ['eagle', 'cow', 'kangaroo']
 var guessArray = [];
 var animal;
 var gameTimer;
-var totalGameTime = 60;
+var totalGameTime = 10;
+var liveGame = true;
 
 $(function() {
   timer(totalGameTime)
@@ -19,27 +20,31 @@ $(function() {
   }
   $(".guess-word").text(underscores) //changes text of elements of class "guess-word"
 
-  $(this).keypress(function(key) {
-    var letter = key.originalEvent.key.toLowerCase();
-    var keycode = key.originalEvent.keyCode;
-    if (((keycode > 64 && keycode < 91) || (keycode > 96 && keycode < 123))
-      && !(guessArray.includes(letter))) {
-      guessArray.push(letter);
-      var i;
-      var numGuesses = parseInt($('.guess-num').text());
-      decrementNumGuesses(numGuesses);
-      var currentText = $('.guess-word').text();
-      if (numGuesses > 0) {
-        changeGuessedText(letter.toLowerCase());
-        for (i = 0; i < animal.length; i++) {
-          if (animal[i] === letter) {
-            currentText = setCharAt(currentText, i*2, letter);
-            $('.guess-word').text(currentText);
+  if (liveGame) {
+    console.log(liveGame)
+    $(this).keypress(function(key) {
+      console.log(liveGame)
+      var letter = key.originalEvent.key.toLowerCase();
+      var keycode = key.originalEvent.keyCode;
+      if (((keycode > 64 && keycode < 91) || (keycode > 96 && keycode < 123))
+        && !(guessArray.includes(letter))) {
+        guessArray.push(letter);
+        var i;
+        var numGuesses = parseInt($('.guess-num').text());
+        decrementNumGuesses(numGuesses);
+        var currentText = $('.guess-word').text();
+        if (numGuesses > 0) {
+          changeGuessedText(letter.toLowerCase());
+          for (i = 0; i < animal.length; i++) {
+            if (animal[i] === letter) {
+              currentText = setCharAt(currentText, i*2, letter);
+              $('.guess-word').text(currentText);
+            }
           }
         }
       }
-    }
-  });
+    });
+  }
 
   //Reset Button
   //Resets letters guessed, current word, # of guesses, wins,
@@ -68,6 +73,7 @@ $(function() {
     }
     $('.guess-word').text(underscores);
     resetTimer();
+    liveGame = true;
   });
 });
 
@@ -97,11 +103,13 @@ function loseGuesses() {
   $('.toast-lose').toast('show');
   //TODO
   //Change toast-lose to toast-no-guesses
+  liveGame = false;
 }
 
 function loseTime() {
   $('.toast').toast({delay: 5000});
   $('.toast-no-time').toast('show');
+  liveGame = false;
 }
 
 function setNumGuesses(num) {
@@ -125,9 +133,10 @@ function timer(time) {
     if (time < 0) {
       $('.timer-counter').text('0:00');
       loseTime();
+      console.log(liveGame)
       clearInterval(gameTimer)
     }
-  }, 1000)
+  }, 200)
 }
 
 function resetTimer() {
