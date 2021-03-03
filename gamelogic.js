@@ -4,11 +4,13 @@ const page = document;
 var animalArray = ['eagle', 'cow', 'kangaroo']
 var guessArray = [];
 var animal;
+var lettersRemaining;
 
 $(function() {
-  var randIndex = Math.random() * animalArray.length;
+    var randIndex = Math.random() * animalArray.length;
   animal = animalArray[Math.floor(randIndex)]
   setNumGuesses(animal.length + 2);
+  lettersRemaining = animal.length;
   var j;
   var underscores = '';
   for (j = 0; j < animal.length; j++) {
@@ -24,7 +26,6 @@ $(function() {
       guessArray.push(letter);
       var i;
       var numGuesses = parseInt($('.guess-num').text());
-      decrementNumGuesses(numGuesses);
       var currentText = $('.guess-word').text();
       if (numGuesses > 0) {
         changeGuessedText(letter.toLowerCase());
@@ -32,8 +33,15 @@ $(function() {
           if (animal[i] === letter) {
             currentText = setCharAt(currentText, i*2, letter);
             $('.guess-word').text(currentText);
+            lettersRemaining -= 1;
           }
         }
+      }
+      if (lettersRemaining == 0) {
+        incrementWins()
+      }
+      else {
+        decrementNumGuesses(numGuesses);
       }
     }
   });
@@ -64,6 +72,7 @@ $(function() {
       underscores += '_ '
     }
     $('.guess-word').text(underscores);
+    lettersRemaining = animal.length;
   });
 });
 
@@ -78,13 +87,15 @@ function changeGuessedText(letter) {
 }
 
 function decrementNumGuesses(numGuesses) {
-  numGuesses -= 1;
-  if (numGuesses >= 0) {
-    $('.guess-num').text(numGuesses);
-    if (numGuesses === 0) {
-      loseMessage();
-    }
+  numGuesses = numGuesses - 1;
+  if (numGuesses >= lettersRemaining) {
+      $('.guess-num').text(numGuesses);
   }
+  else if (numGuesses < lettersRemaining) {
+    incrementLoses()
+    loseMessage();
+  }
+  
 }
 
 function loseMessage() {
@@ -94,4 +105,16 @@ function loseMessage() {
 
 function setNumGuesses(num) {
   $('.guess-num').text(num);
+}
+
+function incrementWins() {
+  var WinCounter = parseInt($('.win-counter').text());
+  WinCounter = 1 + WinCounter;
+  $('.win-counter').text(WinCounter)
+}
+
+function incrementLoses() {
+  var LoseCounter = parseInt($('.loss-counter').text());
+  LoseCounter = 1 + LoseCounter;
+  $('.loss-counter').text(LoseCounter)
 }

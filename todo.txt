@@ -1,8 +1,9 @@
 Animal Hangman TODO
 timer - Yonatan
-wins and losses - Nacho
 update reset button - Yonatan
 if num guesses < unique chars left, they auto lose - Nacho
+if they win, automatically pull up next word - Nacho
+if they lose, stop the game (lock them out and stop timer) - Yonatan
 if you lose, show what the word was before next hangman - Yonatan
 picture 
 pull list of animals from internet
