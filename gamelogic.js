@@ -61,7 +61,6 @@ $(function() {
   $("#reset").click(function() {
     resetWord();
     var losses = parseInt($('.loss-counter').text());
-    console.log(losses)
     $('.loss-counter').text(losses + 1)
   })
 });
