@@ -9,7 +9,6 @@ var totalGameTime = 10;
 var liveGame = true;
 
 $(function() {
-  var self = this;
   timer(totalGameTime)
   var randIndex = Math.random() * animalArray.length;
   animal = animalArray[Math.floor(randIndex)]
@@ -21,7 +20,7 @@ $(function() {
   }
   $(".guess-word").text(underscores) //changes text of elements of class "guess-word"
 
-  $(self).keypress(function(key) {
+  $(this).keypress(function(key) {
     if (liveGame) {
       var letter = key.originalEvent.key.toLowerCase();
       var keycode = key.originalEvent.keyCode;
