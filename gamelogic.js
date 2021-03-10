@@ -2,35 +2,29 @@
 const page = document;
 
 var animalArray = ['eagle', 'cow', 'kangaroo']
-var guessArray = [];
-var animal;
-var gameTimer;
-var totalGameTime = 10;
+var guessArray = []; // keeps track of letters guessed 
+var animal; // the animal currently being guessed
+var gameTimer; // amount of time left in game
+var totalGameTime = 60; 
 var liveGame = true;
 
 $(function() {
   timer(totalGameTime)
-  var randIndex = Math.random() * animalArray.length;
-  animal = animalArray[Math.floor(randIndex)]
+  newAnimal();
   setNumGuesses(animal.length + 2);
-  var j;
-  var underscores = '';
-  for (j = 0; j < animal.length; j++) {
-    underscores += '_ '
-  }
-  $(".guess-word").text(underscores) //changes text of elements of class "guess-word"
+  setUnderscores();
 
   $(this).keypress(function(key) {
     if (liveGame) {
       var letter = key.originalEvent.key.toLowerCase();
       var keycode = key.originalEvent.keyCode;
-      if (((keycode > 64 && keycode < 91) || (keycode > 96 && keycode < 123))
-        && !(guessArray.includes(letter))) {
+      if (((keycode > 64 && keycode < 91) || (keycode > 96 && keycode < 123)) // if legal key
+        && !(guessArray.includes(letter))) { // and letter hasn't been guessed before
         guessArray.push(letter);
         var i;
-        var numGuesses = parseInt($('.guess-num').text());
+        var numGuesses = parseInt($('.guess-num').text()); // read how many guesses left from html
         decrementNumGuesses(numGuesses);
-        var currentText = $('.guess-word').text();
+        var currentText = $('.guess-word').text(); // read currently guessed letters
         if (numGuesses > 0) {
           changeGuessedText(letter.toLowerCase());
           for (i = 0; i < animal.length; i++) {
@@ -44,36 +38,11 @@ $(function() {
     }
   });
 
-  //Reset Button
-  //Resets letters guessed, current word, # of guesses, wins,
-  //losses, and timer
-  //Does NOT change to different word
-  
-  $("#reset").click(function(){
-      //Need to see yawnys code to change 'letters already guessed'
-      $('#updateModal').modal('show');  //shows modal to confirm rest
-  });
-
-  $('.confirm-reset').click(function() { //if you confirm to rest the game
-    // alert("Reset Done!"); //Can remove this after testing
-    $('.win-counter').text(0);
-    $('.loss-counter').text(0);
-    $('.timer-counter').text('1:00'); //have to get rid of this hard code
-    guessArray = []
-    $('.been-guessed').text(' ');
-    var randIndex = Math.random() * animalArray.length;
-    animal = animalArray[Math.floor(randIndex)]
-    setNumGuesses(animal.length + 2);
-    underscores = '';
-    var i;
-    //Make this a function (down below)
-    for (i = 0; i < animal.length; i++) {
-      underscores += '_ '
-    }
-    $('.guess-word').text(underscores);
-    resetTimer();
-    liveGame = true;
-  });
+  $("#reset").click(function() {
+    resetWord();
+    var losses = parseInt($('.loss-counter').text());
+    $('.loss-counter').text(losses + 1)
+  })
 });
 
 function setCharAt(str,index,chr) {
@@ -97,7 +66,7 @@ function decrementNumGuesses(numGuesses) {
 }
 
 function loseGuesses() {
-  $('.toast').toast({delay: 5000});
+  $('.toast').toast({delay: 2000});
   $('.toast-no-guesses').toast('show');
   $('.toast-lose').toast('show');
   //TODO
@@ -106,7 +75,7 @@ function loseGuesses() {
 }
 
 function loseTime() {
-  $('.toast').toast({delay: 3500});
+  $('.toast').toast({delay: 2000});
   $('.toast-no-time').toast('show');
   liveGame = false;
 }
@@ -142,4 +111,27 @@ function timer(time) {
 function resetTimer() {
   clearInterval(gameTimer)
   timer(totalGameTime)
+}
+
+function newAnimal() {
+  var randIndex = Math.random() * animalArray.length;
+  animal = animalArray[Math.floor(randIndex)]
+}
+
+function setUnderscores() {
+  var j;
+  var underscores = '';
+  for (j = 0; j < animal.length; j++) {
+    underscores += '_ '
+  }
+  $(".guess-word").text(underscores) //changes text of elements of class "guess-word"
+}
+
+function resetWord() {
+  newAnimal();
+  setUnderscores();
+  setNumGuesses(animal.length + 2);
+  $('.been-guessed').text(' ');
+  guessArray = [];
+  $('.toast').toast('hide');
 }

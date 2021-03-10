@@ -1,7 +1,6 @@
 Animal Hangman TODO
 comment code - Yonatan
 wins and losses - Nacho
-update reset button - Yonatan
 if num guesses < unique chars left, they auto lose - Nacho
 if you lose, show what the word was before next hangman - Yonatan
 picture 
