@@ -9,6 +9,7 @@ var totalGameTime = 10;
 var liveGame = true;
 
 $(function() {
+  var self = this;
   timer(totalGameTime)
   var randIndex = Math.random() * animalArray.length;
   animal = animalArray[Math.floor(randIndex)]
@@ -20,10 +21,8 @@ $(function() {
   }
   $(".guess-word").text(underscores) //changes text of elements of class "guess-word"
 
-  if (liveGame) {
-    console.log(liveGame)
-    $(this).keypress(function(key) {
-      console.log(liveGame)
+  $(self).keypress(function(key) {
+    if (liveGame) {
       var letter = key.originalEvent.key.toLowerCase();
       var keycode = key.originalEvent.keyCode;
       if (((keycode > 64 && keycode < 91) || (keycode > 96 && keycode < 123))
@@ -43,8 +42,8 @@ $(function() {
           }
         }
       }
-    });
-  }
+    }
+  });
 
   //Reset Button
   //Resets letters guessed, current word, # of guesses, wins,
@@ -54,12 +53,13 @@ $(function() {
   $("#reset").click(function(){
       //Need to see yawnys code to change 'letters already guessed'
       $('#updateModal').modal('show');  //shows modal to confirm rest
-  }); 
+  });
+
   $('.confirm-reset').click(function() { //if you confirm to rest the game
     // alert("Reset Done!"); //Can remove this after testing
     $('.win-counter').text(0);
     $('.loss-counter').text(0);
-    $('.timer-counter').text('1:00');
+    $('.timer-counter').text('1:00'); //have to get rid of this hard code
     guessArray = []
     $('.been-guessed').text(' ');
     var randIndex = Math.random() * animalArray.length;
@@ -107,7 +107,7 @@ function loseGuesses() {
 }
 
 function loseTime() {
-  $('.toast').toast({delay: 5000});
+  $('.toast').toast({delay: 3500});
   $('.toast-no-time').toast('show');
   liveGame = false;
 }
@@ -118,25 +118,26 @@ function setNumGuesses(num) {
 
 function timer(time) {
   var time = time - 1;
-  var min = (time + 1) / 60;
+  var min = time >= 59 ? (time + 1) / 60 : 0;
   gameTimer = setInterval(function() {
-    var sec = time % 60;
-    if (sec === 59) {
-      min--
+    if (liveGame) {
+      var sec = time % 60;
+      if (sec === 59) {
+        min--
+      }
+      if (sec.toString().length == 1) {
+        sec = '0' + sec;
+      }
+  
+      $('.timer-counter').text(min + ':' + sec);
+      time--;
+      if (time < 0) {
+        $('.timer-counter').text('0:00');
+        loseTime();
+        clearInterval(gameTimer)
+      }
     }
-    if (sec.toString().length == 1) {
-      sec = '0' + sec;
-    }
-
-    $('.timer-counter').text(min + ':' + sec);
-    time--;
-    if (time < 0) {
-      $('.timer-counter').text('0:00');
-      loseTime();
-      console.log(liveGame)
-      clearInterval(gameTimer)
-    }
-  }, 200)
+  }, 1000)
 }
 
 function resetTimer() {
