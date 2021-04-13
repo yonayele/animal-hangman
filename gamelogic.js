@@ -82,9 +82,16 @@ function decrementNumGuesses(numGuesses) {
   if (numGuesses >= 0) {
     $('.guess-num').text(numGuesses);
     if (numGuesses === 0) {
-      loseMessage();
+      lose()
     }
   }
+}
+
+function lose() {
+  loseMessage();
+  var lossCounter = parseInt($('.loss-counter').text());
+  lossCounter = lossCounter + 1;
+  $('.loss-counter').text(lossCounter);
 }
 
 function loseMessage() {
